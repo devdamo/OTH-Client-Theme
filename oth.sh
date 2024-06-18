@@ -29,6 +29,14 @@ progress() {
     echo -n -e "\e[34m$1...\e[0m"
 }
 
+# Display welcome message
+info "
+======================================
+|||             oth.sh             |||
+|||          By damo © 2024        |||
+======================================
+"
+
 # Prompt for license key and domain
 read -p "Please enter your license key: " LICENSE_KEY
 read -p "Please enter your domain: " DOMAIN
@@ -44,13 +52,7 @@ RESOURCE_NAME="oth"
 DOWNLOAD_API_URL="https://overtimehosting.shop/api/v1/licenses/public/download"
 TARGET_DIR="/var/www/wemx"
 
-# Display welcome message
-info "
-======================================
-|||             oth.sh             |||
-|||          By damo © 2024        |||
-======================================
-"
+
 
 # Check if the script is run as root
 if [[ $EUID -ne 0 ]]; then
@@ -75,11 +77,7 @@ RESPONSE=$(curl -s -X POST $DOWNLOAD_API_URL \
     "resource_name": "'"othclienttheme"'"
 }')
 
-# Debugging: Print the raw response
-echo "Raw response: $RESPONSE"
 
-# Check if the response contains success
-SUCCESS=$(echo $RESPONSE | jq -r .success)
 
 if [ "$SUCCESS" != "true" ]; then
     error "Failed to get download URL: $(echo $RESPONSE | jq -r .message)"
