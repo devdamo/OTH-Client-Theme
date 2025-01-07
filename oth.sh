@@ -47,8 +47,8 @@ if ! check_domain "$DOMAIN"; then
     exit 1
 fi
 
-PACKAGE_NAME="Wemx Client Theme"
-RESOURCE_NAME="oth"
+PACKAGE_NAME="damo"
+RESOURCE_NAME="damo"
 DOWNLOAD_API_URL="https://othstore.net/api/v1/licenses/public/download"
 TARGET_DIR="/var/www/wemx"
 
