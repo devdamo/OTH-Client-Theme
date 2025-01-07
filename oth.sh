@@ -49,7 +49,7 @@ fi
 
 PACKAGE_NAME="Wemx Client Theme"
 RESOURCE_NAME="oth"
-DOWNLOAD_API_URL="https://overtimehosting.shop/api/v1/licenses/public/download"
+DOWNLOAD_API_URL="https://othstore.net/api/v1/licenses/public/download"
 TARGET_DIR="/var/www/wemx"
 
 
