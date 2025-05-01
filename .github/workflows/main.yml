@@ -1,0 +1,35 @@
+name: Deploy Trigger
+
+on:
+  push:
+    branches: [ main ]  # or use your default branch name like 'master'
+  # Uncomment below to run on pull requests as well
+  # pull_request:
+  #   branches: [ main ]
+  
+  # Allows manual triggering from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    container:
+      image: alpine:latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Install curl
+      run: |
+        echo "Installing curl..."
+        apk update && apk add curl
+        
+    - name: Trigger deployment
+      run: |
+        echo "Triggering deployment..."
+        curl --request POST "http://193.160.23.178:3000/api/box/deploy/7bbf074df41a523e770acf216224918f5e873455e4181a73"
+        
+    - name: Verify deployment status
+      run: |
+        echo "Deployment triggered successfully"
